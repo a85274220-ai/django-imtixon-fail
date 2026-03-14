@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Register - Bookly Management System</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#136dec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101822",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <header
+                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-10 py-4 bg-white dark:bg-slate-900">
+                <div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+                    <div class="size-6 text-primary">
+                        <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V44Z"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-lg font-bold leading-tight tracking-tight">Bookly</h2>
+                </div>
+                <div class="flex flex-1 justify-end gap-8 items-center">
+                    <a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors"
+                        href="{% url 'login_page' %}">Login</a>
+                    <button
+                        class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide">
+                        <span>Register</span>
+                    </button>
+                </div>
+            </header>
+            <main class="flex flex-1 items-center justify-center px-4 py-12">
+                <div
+                    class="layout-content-container flex flex-col w-full max-w-[480px] bg-white dark:bg-slate-900 p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+                    <div class="flex flex-col gap-2 mb-8">
+                        <h1 class="text-slate-900 dark:text-white text-3xl font-black leading-tight tracking-tight">
+                            Create Account</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-base font-normal">Join our book management
+                            community today.</p>
+                    </div>
+                    <form class="flex flex-col gap-5" method="post">
+                        {% csrf_token %}
+                        <label class="flex flex-col gap-2">
+                            <span class="text-slate-900 dark:text-slate-200 text-sm font-semibold">Full Name</span>
+                            <div class="relative">
+                                <span
+                                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">person</span>
+                                <input
+                                    class="flex w-full rounded-lg text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary h-12 pl-10 pr-4 placeholder:text-slate-400 text-sm font-normal"
+                                    placeholder="John Doe" type="text" name="full_name" />
+                            </div>
+                        </label>
+                        <label class="flex flex-col gap-2">
+                            <span class="text-slate-900 dark:text-slate-200 text-sm font-semibold">Username</span>
+                            <div class="relative">
+                                <span
+                                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">mail</span>
+                                <input
+                                    class="flex w-full rounded-lg text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary h-12 pl-10 pr-4 placeholder:text-slate-400 text-sm font-normal"
+                                    placeholder="username" type="text" name="username"/>
+                            </div>
+                        </label>
+                        <label class="flex flex-col gap-2">
+                            <span class="text-slate-900 dark:text-slate-200 text-sm font-semibold">Password</span>
+                            <div class="relative flex items-center">
+                                <span
+                                    class="material-symbols-outlined absolute left-3 text-slate-400 text-xl">lock</span>
+                                <input
+                                    class="flex w-full rounded-lg text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary h-12 pl-10 pr-12 placeholder:text-slate-400 text-sm font-normal"
+                                    placeholder="Min. 8 characters" type="password" name="password" />
+                                <button
+                                    class="absolute right-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                                    type="button">
+                                    <span class="material-symbols-outlined text-xl">visibility</span>
+                                </button>
+                            </div>
+                        </label>
+                        <label class="flex flex-col gap-2">
+                            <span class="text-slate-900 dark:text-slate-200 text-sm font-semibold">Confirm
+                                Password</span>
+                            <div class="relative flex items-center">
+                                <span
+                                    class="material-symbols-outlined absolute left-3 text-slate-400 text-xl">lock_reset</span>
+                                <input
+                                    class="flex w-full rounded-lg text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary h-12 pl-10 pr-12 placeholder:text-slate-400 text-sm font-normal"
+                                    placeholder="Repeat your password" type="password" />
+                            </div>
+                        </label>
+                        <div class="flex items-center gap-2 py-2">
+                            <input
+                                class="rounded border-slate-300 dark:border-slate-700 text-primary focus:ring-primary h-4 w-4"
+                                id="terms" type="checkbox" />
+                            <label class="text-xs text-slate-500 dark:text-slate-400" for="terms">
+                                I agree to the <a class="text-primary hover:underline" href="#">Terms of Service</a> and
+                                <a class="text-primary hover:underline" href="#">Privacy Policy</a>
+                            </label>
+                        </div>
+                        <button
+                            class="w-full flex items-center justify-center rounded-lg h-12 bg-primary text-white text-base font-bold shadow-md hover:bg-primary/90 transition-all mt-2"
+                            type="submit">
+                            Create Account
+                        </button>
+                    </form>
+                    <div class="mt-8 text-center">
+                        <p class="text-sm text-slate-600 dark:text-slate-400">
+                            Already have an account?
+                            <a class="text-primary font-bold hover:underline ml-1" href="{% url 'login_page' %}">Login
+                                here</a>
+                        </p>
+                    </div>
+                </div>
+            </main>
+            <footer class="mt-auto py-6 text-center border-t border-slate-200 dark:border-slate-800">
+                <p class="text-xs text-slate-400 dark:text-slate-500">© 2024 Bookly Management System. All rights
+                    reserved.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
